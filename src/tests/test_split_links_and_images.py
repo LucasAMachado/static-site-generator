@@ -1,5 +1,8 @@
-import unittest
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import unittest
 from split_links_and_images import split_nodes_image, split_nodes_link
 
 from textnode import (
