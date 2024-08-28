@@ -1,6 +1,6 @@
 # Math Quiz
 
-Welcome to our math quiz! Test your skills with these questions. Click on the link below to check your answers.
+Welcome to our math quiz
 
 ## Questions
 
@@ -12,4 +12,3 @@ Welcome to our math quiz! Test your skills with these questions. Click on the li
 
 [Check your answers here](math-answers/index.html)
 
-Good luck!
