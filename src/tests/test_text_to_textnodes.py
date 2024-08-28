@@ -1,9 +1,11 @@
+import unittest
 import sys
 import os
+from typing import List
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import unittest  
-
+from text_to_textnodes import text_to_textnodes
 from textnode import (
     TextNode,
     text_type_text,
@@ -14,11 +16,10 @@ from textnode import (
     text_type_link
 )
 
-from text_to_textnodes import text_to_textnodes
 
 class TestTextToTextNodes(unittest.TestCase):
-    def test_text_to_textnodes(self):
-        nodes = text_to_textnodes(
+    def test_text_to_textnodes(self) -> None:
+        nodes: List[TextNode] = text_to_textnodes(
             "This is **text** with an *italic* word and a `code block` and an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://boot.dev)"
         )
         self.assertListEqual(
@@ -37,6 +38,7 @@ class TestTextToTextNodes(unittest.TestCase):
             ],
             nodes,
         )
+
 
 if __name__ == "__main__":
     unittest.main()

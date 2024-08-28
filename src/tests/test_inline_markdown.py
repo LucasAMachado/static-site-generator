@@ -1,11 +1,9 @@
+import unittest
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from typing import List
 
-import unittest
-from inline_markdown import (
-    split_nodes_delimiter,
-)
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from textnode import (
     TextNode,
@@ -14,12 +12,16 @@ from textnode import (
     text_type_italic,
     text_type_code,
 )
+from inline_markdown import split_nodes_delimiter
+
 
 
 class TestInlineMarkdown(unittest.TestCase):
-    def test_delim_bold(self):
-        node = TextNode("This is text with a **bolded** word", text_type_text)
-        new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
+    def test_delim_bold(self) -> None:
+        node: TextNode = TextNode(
+            "This is text with a **bolded** word", text_type_text)
+        new_nodes: List[TextNode] = split_nodes_delimiter(
+            [node], "**", text_type_bold)
         self.assertListEqual(
             [
                 TextNode("This is text with a ", text_type_text),
@@ -29,11 +31,12 @@ class TestInlineMarkdown(unittest.TestCase):
             new_nodes,
         )
 
-    def test_delim_bold_double(self):
-        node = TextNode(
+    def test_delim_bold_double(self) -> None:
+        node: TextNode = TextNode(
             "This is text with a **bolded** word and **another**", text_type_text
         )
-        new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
+        new_nodes: List[TextNode] = split_nodes_delimiter(
+            [node], "**", text_type_bold)
         self.assertListEqual(
             [
                 TextNode("This is text with a ", text_type_text),
@@ -44,11 +47,12 @@ class TestInlineMarkdown(unittest.TestCase):
             new_nodes,
         )
 
-    def test_delim_bold_multiword(self):
-        node = TextNode(
+    def test_delim_bold_multiword(self) -> None:
+        node: TextNode = TextNode(
             "This is text with a **bolded word** and **another**", text_type_text
         )
-        new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
+        new_nodes: List[TextNode] = split_nodes_delimiter(
+            [node], "**", text_type_bold)
         self.assertListEqual(
             [
                 TextNode("This is text with a ", text_type_text),
@@ -59,9 +63,11 @@ class TestInlineMarkdown(unittest.TestCase):
             new_nodes,
         )
 
-    def test_delim_italic(self):
-        node = TextNode("This is text with an *italic* word", text_type_text)
-        new_nodes = split_nodes_delimiter([node], "*", text_type_italic)
+    def test_delim_italic(self) -> None:
+        node: TextNode = TextNode(
+            "This is text with an *italic* word", text_type_text)
+        new_nodes: List[TextNode] = split_nodes_delimiter(
+            [node], "*", text_type_italic)
         self.assertListEqual(
             [
                 TextNode("This is text with an ", text_type_text),
@@ -71,9 +77,10 @@ class TestInlineMarkdown(unittest.TestCase):
             new_nodes,
         )
 
-    def test_delim_bold_and_italic(self):
-        node = TextNode("**bold** and *italic*", text_type_text)
-        new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
+    def test_delim_bold_and_italic(self) -> None:
+        node: TextNode = TextNode("**bold** and *italic*", text_type_text)
+        new_nodes: List[TextNode] = split_nodes_delimiter(
+            [node], "**", text_type_bold)
         new_nodes = split_nodes_delimiter(new_nodes, "*", text_type_italic)
         self.assertListEqual(
             [
@@ -84,10 +91,11 @@ class TestInlineMarkdown(unittest.TestCase):
             new_nodes,
         )
 
-    def test_delim_code(self):
-        node = TextNode(
+    def test_delim_code(self) -> None:
+        node: TextNode = TextNode(
             "This is text with a `code block` word", text_type_text)
-        new_nodes = split_nodes_delimiter([node], "`", text_type_code)
+        new_nodes: List[TextNode] = split_nodes_delimiter(
+            [node], "`", text_type_code)
         self.assertListEqual(
             [
                 TextNode("This is text with a ", text_type_text),
