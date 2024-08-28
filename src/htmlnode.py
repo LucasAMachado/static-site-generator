@@ -30,7 +30,7 @@ class LeafNode(HTMLNode):
         self.value = value
         self.props = props
 
-    def to_html(self):
+    def to_html(self):  
             if self.value is None:
                 raise ValueError("Invalid HTML: no value")
             if self.tag is None:
