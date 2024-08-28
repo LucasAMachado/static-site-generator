@@ -33,7 +33,7 @@ This is a code block
                 "> This is a quote\n> on multiple lines",
                 "```\nThis is a code block\n```",
             ],
-        )
+        )   
 
 class TestMarkdownBlockType(unittest.TestCase):
 
